@@ -3,11 +3,8 @@
 #include <ctype.h>
 #include "bmp.h"
 #include <string.h>
-int main(){
-char* reversed = reverse("Hello world!");
-printf("%s\n", reversed);
-free(reversed);
-}
+
+
 char* reverse(const char* text){
 if(text == NULL){
         return NULL;
