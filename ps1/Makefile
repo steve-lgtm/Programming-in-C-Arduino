@@ -1,25 +1,27 @@
-#variables
 CC=gcc
-CFLAGS=-std=cll -Wall -Werror
+CFLAGS=-std=c11 -Werror -Wall
 LDLIBS=-lm
-OUTPUT=ps1
+OUTPUT=crypto
 
-#target
-all: ps1
+all: $(OUTPUT)
 
-$(OUTPUT): playfair.o bmp.o main.o
-        cppcheck --enable=performance,unusedFunction --error-exitcode=1 *.c
-        gcc $(CFLAGS) playfair.o bmp.o main.o $(LDLIBS) -o $(OUTPUT)
+$(OUTPUT): main.o playfair.o bmp.o
+		cppcheck --enable=performance,unusedFunction --error-exitcode=1 *.c
+		$(CC) $(CFLAGS) playfair.o bmp.o main.o $(LDLIBS) -o $(OUTPUT)
+		valgrind --leak-check=full ./$(OUTPUT) *.o
 
 main.o: main.c
-        gcc $(CFLAGS) main.c -o main.o
+		$(CC) $(CFLAGS) $(LDLIBS) -c main.c -o main.o
 
-playfair.o: playfair.c playfair.h
-        gcc $(CFLAGS) playfair.c -o playfair.o
+playfair.o: playfair.c
+		$(CC) $(CFLAGS) $(LDLIBS) -c playfair.c -o playfair.o
 
-bmp.o: bmp.c bmp.h
-        gcc $(CFLAGS) bmp.c -o bmp.o
+bmp.o: bmp.c
+		$(CC) $(CFLAGS) $(LDLIBS) -c bmp.c -o bmp.o
 
 clean:
-        rm -rf $(OUTPUT) *.o
+		rm -rf $(OUTPUT) *.o tests
+tests: tests.c
+		$(CC) $(CFLAGS) tests.c $(LDLIBS) -o tests
+		./tests
 
