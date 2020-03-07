@@ -5,11 +5,14 @@
 #include <string.h>
 
 
+<<<<<<< HEAD
 int main(){
 char *encrypted;
 encrypted = vigenere_encrypt("CoMPuTeR", "Hello world!");
 printf("%s\n", encrypted);
 }
+=======
+>>>>>>> d640fdb4e98911c2a4f10da69079035d99403dbe
 char* reverse(const char* text){
 if(text == NULL){
         return NULL;
