@@ -3,19 +3,17 @@
 #include <ctype.h>
 #include "bmp.h"
 #include <string.h>
+#include<stdbool.h>
+#include<math.h>
 
 
-<<<<<<< HEAD
-=======
-
->>>>>>> 4d2b88722f74a2c31e777610e8b9b5dd5da6cfab
 char* reverse(const char* text){
 if(text == NULL){
         return NULL;
             }
 int j=strlen(text);
-char *new = (char*)calloc(sizeof(text)+1, sizeof(char));
-for (int i = 0; i < (strlen(text) / 2); i++) {
+char *new = calloc(sizeof(text), sizeof(char*));
+for (int i = 0; i < (strlen(text)); i++) {
         char swap = text[j - 1 - i];
                 new[j - 1 - i] = text[i];
                         new[i] = swap;
@@ -26,7 +24,9 @@ for (int i = 0; i < (strlen(text) / 2); i++) {
                             new[i] = new[i] - 32; 
                             }}
                           new[j]='\0';
-                           return new;
+                         
+                          return new;
+                           
                            }
 
 
@@ -35,7 +35,7 @@ char* vigenere_encrypt(const char* key, const char* text){
  if (key == NULL || text == NULL) {
          return NULL;}
  
- char *keyn=(char*)calloc(sizeof(text)+10, sizeof(char));
+ char *keyn=calloc(sizeof(text), sizeof(char*));
  int j=0;
  for(int i=0;i<strlen(text);i++){
  if(j==strlen(key))
@@ -56,8 +56,8 @@ keyn[i]=' ';
                             }}
                             
 //encrypt
-char *textn=(char*)calloc(sizeof(text)+1, sizeof(char));
-char *encrypt=(char*)calloc(sizeof(text)+10, sizeof(char));
+char *textn=calloc(sizeof(text), sizeof(char*));
+char *encrypt=calloc(sizeof(text), sizeof(char*));
 
 strcpy(textn,text);
 for (int i=0;i<strlen(text);i++){ 
@@ -73,6 +73,8 @@ else
 encrypt[i]=textn[i];
 }
 encrypt[strlen(textn)]='\0';
+free(textn);
+free(keyn);
 return encrypt;
 }
 
@@ -80,7 +82,7 @@ char* vigenere_decrypt(const char* key, const char* text){
  if (key == NULL || text == NULL) {
          return NULL;}
  
- char *keyn=(char*)calloc(sizeof(text)+10, sizeof(char));
+ char *keyn=calloc(sizeof(text), sizeof(char*));
  int j=0;
  for(int i=0;i<strlen(text);i++){
  if(j==strlen(key))
@@ -101,10 +103,11 @@ keyn[i]=' ';
                             }}
                             
 //decryption
-char *textn=(char*)calloc(sizeof(text)+1, sizeof(char));
-char *decrypt=(char*)calloc(sizeof(text)+10, sizeof(char));
+char *textn=calloc(sizeof(text), sizeof(char*));
+char *decrypt=calloc(sizeof(text), sizeof(char*));
 
 strcpy(textn,text);
+
 for (int i=0;i<strlen(text);i++){ 
                            if ( textn[i] >= 'a' && textn[i] <= 'z' ){
                             textn[i] = textn[i] - 32; 
@@ -118,8 +121,129 @@ else
 decrypt[i]=textn[i];
 }
 decrypt[strlen(textn)]='\0';
+free(textn);
+free(keyn);
 return decrypt;
+
+}
+
+unsigned char* bit_encrypt(const char* text){
+unsigned char* encrypted=calloc(50, sizeof(char*));
+for(int d=0;d<strlen(text);d++){
+
+char *textn=calloc(sizeof(text), sizeof(char*));
+strcpy(textn,text);
+
+bool bin[8];
+for (int i=7;i>=0;i--){
+
+if (textn[d] % 2==0)
+bin[i]=0;
+else
+bin[i]=1;
+textn[d]=textn[d]/2;}
+
+bool temp=bin[0];
+bin[0]=bin[1];
+bin[1]=temp;
+temp=0;
+temp=bin[2];
+bin[2]=bin[3];
+bin[3]=temp;
+
+for (int i=4;i<8;i++){
+bin[i]=bin[i]^bin[i-4];}
+
+int dec = 0;
+int j=7;
+    for(int i=0;i<8;i++) {
+        dec += bin[i] * pow(2, j);
+        j--;
+  }
+
+encrypted[d]=dec;
+free(textn);
+}
+
+return encrypted;
 }
 
 
-                           
+char* bit_decrypt(const unsigned char* text){
+char* decrypted=calloc(100, sizeof(char*));
+for(int d=0;d<strlen((char*)text);d++){
+
+unsigned char *textn=calloc(sizeof(text), sizeof(char*));
+for(int i =0;i<strlen((char*)text);i++){
+textn[i]=text[i];
+}
+
+bool bin[8];
+for (int i=7;i>=0;i--){
+
+if (textn[d] % 2==0)
+bin[i]=0;
+else
+bin[i]=1;
+textn[d]=textn[d]/2;}
+
+for (int i=4;i<8;i++){
+bin[i]=bin[i]^bin[i-4];}
+
+bool temp=bin[0];
+bin[0]=bin[1];
+bin[1]=temp;
+temp=0;
+temp=bin[2];
+bin[2]=bin[3];
+bin[3]=temp;
+
+int dec = 0;
+int j=7;
+    for(int i=0;i<8;i++) {
+        dec += bin[i] * pow(2, j);
+        j--;
+  }
+
+decrypted[d]=dec;
+free(textn);
+}
+return decrypted;
+}
+
+
+unsigned char* bmp_encrypt(const char* key, const char* text){
+
+if (key == NULL) {
+        return NULL;
+    }
+    if ( text == NULL) {
+        return NULL;
+    }
+
+    char *prvy = reverse(text);
+    
+    char *druhy = vigenere_encrypt(key, prvy);
+    
+    unsigned char *result = bit_encrypt(druhy);
+    
+    free(druhy);
+    free(prvy);
+    return result;
+}
+
+ char *bmp_decrypt(const char *key, const unsigned char *text) {
+    if (key == NULL) {
+        return NULL;
+    }
+    if ( text == NULL) {
+        return NULL;
+    }
+    char *medzi = bit_decrypt(text);
+    char *ahoj = vigenere_decrypt(key, medzi);
+    char *result = reverse(ahoj);
+    
+    free(ahoj);
+    free(medzi);
+    return result;
+}
