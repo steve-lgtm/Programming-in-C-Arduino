@@ -7,6 +7,10 @@
 #include<math.h>
 
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> 1ac23b8e456d9a4eaea5ab4935068fbeb0ecee1c
 char* reverse(const char* text){
 if(text == NULL){
         return NULL;
