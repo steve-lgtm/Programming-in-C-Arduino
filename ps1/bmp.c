@@ -5,14 +5,6 @@
 #include <string.h>
 
 
-<<<<<<< HEAD
-int main(){
-char *encrypted;
-encrypted = vigenere_encrypt("CoMPuTeR", "Hello world!");
-printf("%s\n", encrypted);
-}
-=======
->>>>>>> d640fdb4e98911c2a4f10da69079035d99403dbe
 char* reverse(const char* text){
 if(text == NULL){
         return NULL;
@@ -80,6 +72,50 @@ encrypt[strlen(textn)]='\0';
 return encrypt;
 }
 
+char* vigenere_decrypt(const char* key, const char* text){
+ if (key == NULL || text == NULL) {
+         return NULL;}
+ 
+ char *keyn=(char*)calloc(sizeof(text)+10, sizeof(char));
+ int j=0;
+ for(int i=0;i<strlen(text);i++){
+ if(j==strlen(key))
+j=0;
+if(text[i]==' '){
+keyn[i]=' ';
+}
+ if (isalpha(text[i])){
+ keyn[i]=key[j];
+ j++;}
+ else{
+ keyn[i]=text[i];
+}
+ }
+ for (int i=0;i<strlen(keyn);i++){ 
+                           if ( keyn[i] >= 'a' && keyn[i] <= 'z' ){
+                            keyn[i] = keyn[i] - 32; 
+                            }}
+                            
+//decryption
+char *textn=(char*)calloc(sizeof(text)+1, sizeof(char));
+char *decrypt=(char*)calloc(sizeof(text)+10, sizeof(char));
+
+strcpy(textn,text);
+for (int i=0;i<strlen(text);i++){ 
+                           if ( textn[i] >= 'a' && textn[i] <= 'z' ){
+                            textn[i] = textn[i] - 32; 
+                            }}
+for (int i=0;i<strlen(text);i++){
+    if (textn[i]==' ')
+    decrypt[i]=' ';
+    if(isalpha(textn[i]))
+    decrypt[i]=((textn[i] - keyn[i]+26) %26)+'A';
+else
+decrypt[i]=textn[i];
+}
+decrypt[strlen(textn)]='\0';
+return decrypt;
+}
 
 
                            
