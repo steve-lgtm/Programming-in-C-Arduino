@@ -5,6 +5,10 @@
 #include <string.h>
 
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> 4d2b88722f74a2c31e777610e8b9b5dd5da6cfab
 char* reverse(const char* text){
 if(text == NULL){
         return NULL;
