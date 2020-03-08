@@ -5,7 +5,10 @@
 #include <string.h>
 #include<stdbool.h>
 #include<math.h>
+<<<<<<< HEAD
 
+=======
+>>>>>>> d7502f0a683eb6279a273d006afe6fc70712221e
 
 char* reverse(const char* text){
 if(text == NULL){
