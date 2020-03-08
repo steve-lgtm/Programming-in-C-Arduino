@@ -3,12 +3,10 @@
 #include <ctype.h>
 #include "bmp.h"
 #include <string.h>
-#include<stdbool.h>
-#include<math.h>
-<<<<<<< HEAD
+#include <stdbool.h>
+#include <math.h>
 
-=======
->>>>>>> d7502f0a683eb6279a273d006afe6fc70712221e
+
 
 char* reverse(const char* text){
 if(text == NULL){
@@ -33,7 +31,7 @@ char* vigenere_encrypt(const char* key, const char* text){
  if (key == NULL || text == NULL) {
          return NULL;}
  
- char *keyn=calloc(sizeof(text), sizeof(char*));
+ char *keyn=calloc(strlen(text), sizeof(char*));
  int j=0;
  for(int i=0;i<strlen(text);i++){
  if(j==strlen(key))
@@ -54,8 +52,8 @@ keyn[i]=' ';
                             }}
                             
 //encrypt
-char *textn=calloc(sizeof(text), sizeof(char*));
-char *encrypt=calloc(sizeof(text), sizeof(char*));
+char *textn=calloc(strlen(text), sizeof(char*));
+char *encrypt=calloc(strlen(text), sizeof(char*));
 
 strcpy(textn,text);
 for (int i=0;i<strlen(text);i++){ 
@@ -80,7 +78,7 @@ char* vigenere_decrypt(const char* key, const char* text){
  if (key == NULL || text == NULL) {
          return NULL;}
  
- char *keyn=calloc(sizeof(text), sizeof(char*));
+ char *keyn=calloc(strlen(text), sizeof(char*));
  int j=0;
  for(int i=0;i<strlen(text);i++){
  if(j==strlen(key))
@@ -101,8 +99,8 @@ keyn[i]=' ';
                             }}
                             
 //decryption
-char *textn=calloc(sizeof(text), sizeof(char*));
-char *decrypt=calloc(sizeof(text), sizeof(char*));
+char *textn=calloc(strlen(text), sizeof(char*));
+char *decrypt=calloc(strlen(text), sizeof(char*));
 
 strcpy(textn,text);
 
@@ -129,7 +127,7 @@ unsigned char* bit_encrypt(const char* text){
 unsigned char* encrypted=calloc(50, sizeof(char*));
 for(int d=0;d<strlen(text);d++){
 
-char *textn=calloc(sizeof(text), sizeof(char*));
+char *textn=calloc(strlen(text), sizeof(char*));
 strcpy(textn,text);
 
 bool bin[8];
@@ -168,11 +166,15 @@ return encrypted;
 
 
 char* bit_decrypt(const unsigned char* text){
-char* decrypted=calloc(100, sizeof(char*));
+int suradnica=0;
+while(text[suradnica]!='\0'){
+suradnica++;
+}
+char* decrypted=calloc(suradnica, sizeof(char*));
 for(int d=0;d<strlen((char*)text);d++){
 
-unsigned char *textn=calloc(sizeof(text), sizeof(char*));
-for(int i =0;i<strlen((char*)text);i++){
+unsigned char *textn=calloc(suradnica, sizeof(char*));
+for(int i =0;i<suradnica;i++){
 textn[i]=text[i];
 }
 
