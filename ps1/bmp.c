@@ -6,12 +6,6 @@
 #include <stdbool.h>
 #include <math.h>
 
-
-#include<stdbool.h>
-#include<math.h>
-
-
-
 char* reverse(const char* text){
 if(text == NULL){
         return NULL;
