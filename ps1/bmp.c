@@ -5,11 +5,17 @@
 #include <string.h>
 #include<stdbool.h>
 #include<math.h>
+<<<<<<< HEAD
 int main(){
 char* reversed = reverse("Ahoj ako sa mas dnes je velmi pekne pocasie.");
 printf("%s\n", reversed);
 free(reversed);
 }
+=======
+
+
+
+>>>>>>> 2f90c59f8f42ddb78ebf58dbb8313d9cd09249aa
 char* reverse(const char* text){
 if(text == NULL){
         return NULL;
