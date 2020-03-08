@@ -175,7 +175,7 @@ while(text[suradnica]!='\0'){
 suradnica++;
 }
 char* decrypted=calloc(suradnica, sizeof(char*));
-for(int d=0;d<strlen((char*)text);d++){
+for(int d=0;d<suradnica;d++){
 
 unsigned char *textn=calloc(suradnica, sizeof(char*));
 for(int i =0;i<suradnica;i++){
