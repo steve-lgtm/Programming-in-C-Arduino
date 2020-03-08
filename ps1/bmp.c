@@ -3,14 +3,13 @@
 #include <ctype.h>
 #include "bmp.h"
 #include <string.h>
-<<<<<<< HEAD
 #include <stdbool.h>
 #include <math.h>
 
-=======
+
 #include<stdbool.h>
 #include<math.h>
->>>>>>> b5989eb939994b8fc1ff11ef7606428fa62197f6
+
 
 
 char* reverse(const char* text){
