@@ -1,5 +1,9 @@
 #include <stdlib.h>
 #include <stdio.h>
+#include <string.h>
+#include <ctype.h>
+#include <stdbool.h>
+#include <math.h>
 #include "bmp.h"
 #include "playfair.h"
 
@@ -15,8 +19,7 @@ int main(){
                     decrypted = playfair_decrypt("Secret", encrypted);
                         encrypted_bmp = bmp_encrypt("Secret", "Hello world");
                             decrypted_bmp = bmp_decrypt("Secret", encrypted_bmp);
-                                    decrypted_bmp = bmp_decrypt("Secret", encrypted_bmp);
-                                        printf("%s\n", decrypted_bmp);
+                                    
                                             free(encrypted);
                                                 free(decrypted);
                                                     free(encrypted_bmp);
