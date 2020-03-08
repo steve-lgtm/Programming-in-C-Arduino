@@ -5,24 +5,24 @@
 #include <string.h>
 #include<stdbool.h>
 #include<math.h>
-
-
-<<<<<<< HEAD
-=======
-
->>>>>>> 1ac23b8e456d9a4eaea5ab4935068fbeb0ecee1c
+int main(){
+char* reversed = reverse("Ahoj ako sa mas dnes je velmi pekne pocasie.");
+printf("%s\n", reversed);
+free(reversed);
+}
 char* reverse(const char* text){
 if(text == NULL){
         return NULL;
             }
 int j=strlen(text);
-char *new = calloc(sizeof(text), sizeof(char*));
-for (int i = 0; i < (strlen(text)); i++) {
+char *new = calloc(sizeof(text)+100, sizeof(char*));
+for (int i = 0; i < (strlen(text)/2); i++) {
         char swap = text[j - 1 - i];
                 new[j - 1 - i] = text[i];
                         new[i] = swap;
                             
                            }
+                           
                            for (int i=0;i<j;i++){ 
                            if ( new[i] >= 'a' && new[i] <= 'z' ){
                             new[i] = new[i] - 32; 
