@@ -26,9 +26,21 @@ for (int i = 0; i < (strlen(text)); i++) {
 
 
 char* vigenere_encrypt(const char* key, const char* text){
- if (key == NULL || text == NULL) {
-         return NULL;}
+ if (key == NULL){
+ return NULL;}
  
+ if(text == NULL){
+         return NULL;
+ }
+ int null = 0;
+    for (int i = 0; i < strlen(key); i++) {
+        if (isalpha(key[i])) {
+        } else {
+            null++;
+        }
+    }
+    if (null != 0) {
+        return NULL;}
  char *keyn=calloc(strlen(text), sizeof(char*));
  int j=0;
  for(int i=0;i<strlen(text);i++){
@@ -73,9 +85,21 @@ return encrypt;
 }
 
 char* vigenere_decrypt(const char* key, const char* text){
- if (key == NULL || text == NULL) {
-         return NULL;}
+if (key == NULL){
+ return NULL;}
  
+ if(text == NULL){
+         return NULL;
+ }
+ int null = 0;
+    for (int i = 0; i < strlen(key); i++) {
+        if (isalpha(key[i])) {
+        } else {
+            null++;
+        }
+    }
+    if (null != 0) {
+        return NULL;}
  char *keyn=calloc(strlen(text), sizeof(char*));
  int j=0;
  for(int i=0;i<strlen(text);i++){
@@ -122,6 +146,9 @@ return decrypt;
 }
 
 unsigned char* bit_encrypt(const char* text){
+if(text == NULL){
+        return NULL;
+    }
 unsigned char* encrypted=calloc(50, sizeof(char*));
 for(int d=0;d<strlen(text);d++){
 
@@ -164,12 +191,15 @@ return encrypted;
 
 
 char* bit_decrypt(const unsigned char* text){
+if(text == NULL){
+        return NULL;
+    }
 int suradnica=0;
 while(text[suradnica]!='\0'){
 suradnica++;
 }
 char* decrypted=calloc(suradnica, sizeof(char*));
-for(int d=0;d<suradnica;d++){
+for(int d=0;d<strlen((char*)text);d++){
 
 unsigned char *textn=calloc(suradnica, sizeof(char*));
 for(int i =0;i<suradnica;i++){
@@ -237,11 +267,11 @@ if (key == NULL) {
     if ( text == NULL) {
         return NULL;
     }
-    char *medzi = bit_decrypt(text);
-    char *ahoj = vigenere_decrypt(key, medzi);
-    char *result = reverse(ahoj);
+    char *prvy = bit_decrypt(text);
+    char *druhy = vigenere_decrypt(key, prvy);
+    char *result = reverse(druhy);
     
-    free(ahoj);
-    free(medzi);
+    free(prvy);
+    free(druhy);
     return result;
 }
