@@ -1,10 +1,28 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include "k.h"
+ 
 
-
-
-
+bool is_move_possible(const struct game game){
+ for (int i = 0; i < SIZE; i++)
+    {
+        for (int j = 0; j < SIZE; j++)
+        {
+            if (game.board[i][j]==' ')
+            {
+                return true;
+            }
+            if (game.board[i][j]==game.board[i][j+1] || game.board[i][j]==game.board[i+1][j]
+            || game.board[i][j]==game.board[i][j-1] || game.board[i][j]==game.board[i-1][j])
+            {
+                return true;
+            }
+            
+        }
+        
+    }   
+    return false;
+}
 
 bool is_game_won(const struct game game){
     for (int i = 0; i < SIZE; i++)
