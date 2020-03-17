@@ -22,7 +22,7 @@ if ((dy==0 && dx==0) || (dy!=0 && dx!=0) || (dy==0 && (dx!=1 && dx!=-1)) || (dx=
     for (int j = 3; j > 0; j--)
 {
     if(game->board[i][j]==' '){
-        int temp=game->board[i][j];
+        char temp=game->board[i][j];
         game->board[i][j]=game->board[i][j-1];
         game->board[i][j-1]=temp;
         p++;
@@ -53,7 +53,7 @@ for (int q = 0; q < SIZE; q++)
     for (int j = 3; j > 0; j--)
 {
     if(game->board[i][j]==' '){
-        int temp=game->board[i][j];
+        char temp=game->board[i][j];
         game->board[i][j]=game->board[i][j-1];
         game->board[i][j-1]=temp;
         p++;
@@ -72,7 +72,7 @@ for (int q = 0; q < SIZE; q++)
     for (int j = 0; j < 3; j++)
 {
     if(game->board[i][j]==' '){
-        int temp=game->board[i][j];
+        char temp=game->board[i][j];
         game->board[i][j]=game->board[i][j+1];
         game->board[i][j+1]=temp;
         p++;
@@ -103,7 +103,7 @@ for (int q = 0; q < SIZE; q++)
     for (int j = 0; j < 3; j++)
 {
     if(game->board[i][j]==' '){
-        int temp=game->board[i][j];
+        char temp=game->board[i][j];
         game->board[i][j]=game->board[i][j+1];
         game->board[i][j+1]=temp;
         p++;
@@ -122,7 +122,7 @@ for (int q = 0; q < SIZE; q++)
     for (int i = 0; i < 3; i++)
 {
     if(game->board[i][j]==' '){
-        int temp=game->board[i][j];
+        char temp=game->board[i][j];
         game->board[i][j]=game->board[i+1][j];
         game->board[i+1][j]=temp;
         p++;
@@ -153,7 +153,7 @@ for (int q = 0; q < SIZE; q++)
     for (int i = 0; i < 3; i++)
 {
     if(game->board[i][j]==' '){
-        int temp=game->board[i][j];
+        char temp=game->board[i][j];
         game->board[i][j]=game->board[i+1][j];
         game->board[i+1][j]=temp;
         p++;
@@ -172,7 +172,7 @@ for (int q = 0; q < SIZE; q++)
     for (int i = 3; i > 0; i--)
 {
     if(game->board[i][j]==' '){
-        int temp=game->board[i][j];
+        char temp=game->board[i][j];
         game->board[i][j]=game->board[i-1][j];
         game->board[i-1][j]=temp;
         p++;
@@ -203,7 +203,7 @@ for (int q = 0; q < SIZE; q++)
     for (int i = 3; i > 0; i--)
 {
     if(game->board[i][j]==' '){
-        int temp=game->board[i][j];
+        char temp=game->board[i][j];
         game->board[i][j]=game->board[i-1][j];
         game->board[i-1][j]=temp;
         p++;
