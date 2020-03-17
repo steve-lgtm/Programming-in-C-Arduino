@@ -8,6 +8,19 @@
 bool update(struct game *game, int dy, int dx){
 if ((dy==0 && dx==0) || (dy!=0 && dx!=0) || (dy==0 && (dx!=1 && dx!=-1)) || (dx==0 && (dy!=1 && dy!=-1)))
         return false;
+int medz=0;
+for (int i = 0; i < SIZE; i++)
+{
+    for (int j = 0; j < SIZE; j++)
+    {
+        if(game->board[i][j]==' ')
+        medz++;
+    }
+    
+}
+if(medz==16)
+return false;
+
 
  char abk[]="ABCDEFGHIJK";
  int hod[11]={2,4,8,16,32,64,128,256,512,1024,2048};
