@@ -1,7 +1,226 @@
 #include <stdlib.h>
+#include <string.h>
 #include <stdio.h>
+#include <math.h>
 #include "k.h"
- 
+
+
+bool update(struct game *game, int dy, int dx){
+if ((dy==0 && dx==0) || (dy!=0 && dx!=0) || (dy==0 && (dx!=1 && dx!=-1)) || (dx==0 && (dy!=1 && dy!=-1)))
+        return false;
+
+ char abk[]="ABCDEFGHIJK";
+ int hod[11]={2,4,8,16,32,64,128,256,512,1024,2048};
+ int p=0;
+ if(dx==1){
+ //PRESUN do prava
+ for (int i = 0; i < SIZE; i++)
+ {
+     //medzery
+     for (int q = 0; q < SIZE; q++)
+{
+    for (int j = 3; j > 0; j--)
+{
+    if(game->board[i][j]==' '){
+        int temp=game->board[i][j];
+        game->board[i][j]=game->board[i][j-1];
+        game->board[i][j-1]=temp;
+        p++;
+    }
+}
+}
+//presun
+     for (int j = 3; j > 0; j--)
+     {
+        if (game->board[i][j]==game->board[i][j-1])
+    {
+
+    game->board[i][j-1]=' ';
+            for (int q = 0; q < strlen(abk); q++)
+            {
+            if(game->board[i][j]==abk[q]){
+            game->board[i][j]=abk[q+1];
+            game->score=game->score+(2*hod[q]);
+            p++;
+            break;
+            }
+    } 
+ }
+ }
+ //medzery
+for (int q = 0; q < SIZE; q++)
+{
+    for (int j = 3; j > 0; j--)
+{
+    if(game->board[i][j]==' '){
+        int temp=game->board[i][j];
+        game->board[i][j]=game->board[i][j-1];
+        game->board[i][j-1]=temp;
+        p++;
+    }
+}
+}
+ }
+ }
+  if(dx==-1){
+ //PRESUN do lava
+ for (int i = 0; i < SIZE; i++)
+ {
+     //medzery
+     for (int q = 0; q < SIZE; q++)
+{
+    for (int j = 0; j < 3; j++)
+{
+    if(game->board[i][j]==' '){
+        int temp=game->board[i][j];
+        game->board[i][j]=game->board[i][j+1];
+        game->board[i][j+1]=temp;
+        p++;
+    }
+}
+}
+//presun
+     for (int j = 0; j < 3; j++)
+     {
+        if (game->board[i][j]==game->board[i][j+1])
+    {
+
+    game->board[i][j+1]=' ';
+            for (int q = 0; q < strlen(abk); q++)
+            {
+            if(game->board[i][j]==abk[q]){
+            game->board[i][j]=abk[q+1];
+            game->score=game->score+(2*hod[q]);
+            p++;
+            break;
+            }
+    } 
+ }
+ }
+ //medzery
+for (int q = 0; q < SIZE; q++)
+{
+    for (int j = 0; j < 3; j++)
+{
+    if(game->board[i][j]==' '){
+        int temp=game->board[i][j];
+        game->board[i][j]=game->board[i][j+1];
+        game->board[i][j+1]=temp;
+        p++;
+    }
+}
+}
+ }
+ }
+ if(dy==-1){
+ //PRESUN hore
+ for (int j = 0; j < SIZE; j++)
+ {
+     //medzery
+     for (int q = 0; q < SIZE; q++)
+{
+    for (int i = 0; i < 3; i++)
+{
+    if(game->board[i][j]==' '){
+        int temp=game->board[i][j];
+        game->board[i][j]=game->board[i+1][j];
+        game->board[i+1][j]=temp;
+        p++;
+    }
+}
+}
+//presun
+     for (int i = 0; i < 3; i++)
+     {
+        if (game->board[i][j]==game->board[i+1][j])
+    {
+
+    game->board[i+1][j]=' ';
+            for (int q = 0; q < strlen(abk); q++)
+            {
+            if(game->board[i][j]==abk[q]){
+            game->board[i][j]=abk[q+1];
+            game->score=game->score+(2*hod[q]);
+            p++;
+            break;
+            }
+    } 
+ }
+ }
+ //medzery
+for (int q = 0; q < SIZE; q++)
+{
+    for (int i = 0; i < 3; i++)
+{
+    if(game->board[i][j]==' '){
+        int temp=game->board[i][j];
+        game->board[i][j]=game->board[i+1][j];
+        game->board[i+1][j]=temp;
+        p++;
+    }
+}
+}
+ }
+ }
+ if(dy==1){
+ //PRESUN dole
+ for (int j = 0; j < SIZE; j++)
+ {
+     //medzery
+     for (int q = 0; q < SIZE; q++)
+{
+    for (int i = 3; i > 0; i--)
+{
+    if(game->board[i][j]==' '){
+        int temp=game->board[i][j];
+        game->board[i][j]=game->board[i-1][j];
+        game->board[i-1][j]=temp;
+        p++;
+    }
+}
+}
+//presun
+     for (int i = 3; i > 0; i--)
+     {
+        if (game->board[i][j]==game->board[i-1][j])
+    {
+
+    game->board[i-1][j]=' ';
+            for (int q = 0; q < strlen(abk); q++)
+            {
+            if(game->board[i][j]==abk[q]){
+            game->board[i][j]=abk[q+1];
+            game->score=game->score+(2*hod[q]);
+            p++;
+            break;
+            }
+    } 
+ }
+ }
+ //medzery
+for (int q = 0; q < SIZE; q++)
+{
+    for (int i = 3; i > 0; i--)
+{
+    if(game->board[i][j]==' '){
+        int temp=game->board[i][j];
+        game->board[i][j]=game->board[i-1][j];
+        game->board[i-1][j]=temp;
+        p++;
+    }
+}
+}
+ }
+ }
+ //pohyb?
+ if (p>0)
+ {
+    return true;
+ }
+ else{
+ return false;
+ }
+}
 
 bool is_move_possible(const struct game game){
  for (int i = 0; i < SIZE; i++)

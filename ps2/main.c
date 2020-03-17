@@ -25,6 +25,7 @@ int main(){
     add_random_tile(board);
     is_move_possible(board);
     is_game_won(board);
+    bool result = update(&game, 0, 1);
     render(board);
     deallocate(board);struct game *board = NULL;
     return 0;
