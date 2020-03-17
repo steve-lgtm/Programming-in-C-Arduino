@@ -1,30 +1,29 @@
+# variables
 CC=gcc
-CFLAGS=-std=c11 -Werror -Wall
-LDLIBS=-lm
-OUTPUT=crypto
+CFLAGS=-std=c11 -Wall -Werror -Wconversion
+LDLIBS=-lm -lncurses
+OUTPUT=ps2
 
+# targets
 all: $(OUTPUT)
 
-$(OUTPUT): main.o hof.o k.o ui.o
-		cppcheck --enable=performance,unusedFunction --error-exitcode=1 *.c
-		$(CC) $(CFLAGS) hof.o k.o ui.o main.o $(LDLIBS) -o $(OUTPUT)
-		valgrind --leak-check=full ./$(OUTPUT) *.o
+$(OUTPUT): k.o hof.o ui.o main.o
+	$(CC) $(CFLAGS) k.o hof.o ui.o main.o $(LDLIBS) -o $(OUTPUT)
 
 main.o: main.c
-		$(CC) $(CFLAGS) $(LDLIBS) -c main.c -o main.o
+	$(CC) $(CFLAGS) -c main.c $(LDLIBS) -o main.o
 
-hof.o: hof.c
-		$(CC) $(CFLAGS) $(LDLIBS) -c hof.c -o hof.o
+k.o: k.c k.h
+	$(CC) $(CFLAGS) -c k.c $(LDLIBS) -o k.o
 
-k.o: k.c
-		$(CC) $(CFLAGS) $(LDLIBS) -c k.c -o k.o
+hof.o: hof.c hof.h
+	$(CC) $(CFLAGS) -c hof.c $(LDLIBS) -o hof.o
 
-ui.o: ui.c
-		$(CC) $(CFLAGS) $(LDLIBS) -c ui.c -o ui.o
+ui.o: ui.c ui.h
+	$(CC) $(CFLAGS) -c ui.c $(LDLIBS) -o ui.o
 
-clean:
-		rm -rf $(OUTPUT) *.o tests
-tests: tests.c
-		$(CC) $(CFLAGS) tests.c $(LDLIBS) -o tests
-		./tests
+
+# remove compiled files
+clean: 
+	rm -rf $(OUTPUT) *.o
 

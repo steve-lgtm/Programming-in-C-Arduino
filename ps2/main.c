@@ -1,32 +1,55 @@
 #include <stdlib.h>
 #include <stdio.h>
+#include <stdbool.h>
 #include <string.h>
 #include <ctype.h>
-#include <stdbool.h>
-#include <math.h>
+
 #include "k.h"
 #include "hof.h"
 #include "ui.h"
-struct game* allocate(){
-     /*Allocate memory for ten boardents*/
-     struct game *board =  malloc(10 * sizeof (struct game));
-     sqrt (board !=0);
 
-     return board;
-}
-void deallocate(struct game* board){
-     /*Deallocate memory from board*/
-     free (board);
+int main(int argc, char const *argv[])
+{
+		struct game game = {
+    .board = {
+        {'A', ' ', ' ', ' '},
+        {'B', ' ', ' ', 'B'},
+        {'C', 'C', 'C', ' '},
+        {'D', 'D', 'D', 'D'}
+    },
+    .score = 0
+};
+bool result = update(&game, 0, 1);
+add_random_tile(&game);
+for (int i = 0; i < SIZE; ++i)
+{
+	printf("|");
+	for (int j = 0; j < SIZE; ++j)
+	{
+		printf("%c|", game.board[i][j]);
+	}
+	printf("\n");
 }
 
-int main(){
-	struct game *board = NULL;
-    board=allocate();
-    add_random_tile(board);
-    is_move_possible(board);
-    is_game_won(board);
-    bool result = update(&game, 0, 1);
-    render(board);
-    deallocate(board);struct game *board = NULL;
-    return 0;
+printf("\n");
+render(game);
+printf("result %d\n", result);
+printf("is won %d\n", is_game_won(game));
+printf("is move possible %d\n", is_move_possible(game));
+struct player list[]={{"test",30}};
+printf("%d\n", load(list));
+printf("%d\n", save(list,10));
+/*
+game = {
+    .board = {
+        {' ', ' ', ' ', 'A'},
+        {' ', ' ', ' ', 'C'},
+        {' ', ' ', 'C', 'D'},
+        {' ', ' ', 'E', 'E'}
+    },
+    .score = 88
+};
+result = true;
+*/
+	return 0;
 }
