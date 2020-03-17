@@ -36,9 +36,9 @@ render(game);
 printf("result %d\n", result);
 printf("is won %d\n", is_game_won(game));
 printf("is move possible %d\n", is_move_possible(game));
-struct player list[]={{"test",30}};
-printf("%d\n", load(list));
-printf("%d\n", save(list,10));
+//struct player list[]={{"test",30}};
+//printf("%d\n", load(list));
+//printf("%d\n", save(list,10));
 /*
 game = {
     .board = {
