@@ -5,16 +5,18 @@
 #include "k.h"
 
 
+
 bool update(struct game *game, int dy, int dx){
 if ((dy==0 && dx==0) || (dy!=0 && dx!=0) || (dy==0 && (dx!=1 && dx!=-1)) || (dx==0 && (dy!=1 && dy!=-1)))
         return false;
 int medz=0;
+char array[SIZE][SIZE];
 for (int i = 0; i < SIZE; i++)
 {
     for (int j = 0; j < SIZE; j++)
     {
-        if(game->board[i][j]==' ')
-        medz++;
+        array[i][j]=game->board[i][j];
+        
     }
     
 }
@@ -225,13 +227,25 @@ for (int q = 0; q < SIZE; q++)
 }
  }
  }
+ p=0;
+ for (int i = 0; i < SIZE; i++)
+{
+    for (int j = 0; j < SIZE; j++)
+    {
+        
+    if(array[i][j]==game->board[i][j])
+    p++;
+        
+    }
+    
+}
  //pohyb?
- if (p>0)
+ if (p==16)
  {
-    return true;
+    return false;
  }
  else{
- return false;
+ return true;
  }
 }
 

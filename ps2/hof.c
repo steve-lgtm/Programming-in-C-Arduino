@@ -3,7 +3,7 @@
 #include "hof.h"
 
 int load(struct player list[]){
-FILE *file =fopen(HOF_FILE,"r");
+FILE *file =fopen(HOF_FILE,"br");
  if(file == NULL){
         printf("Error opening file.\n");
         exit(EXIT_FAILURE);
