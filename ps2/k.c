@@ -252,24 +252,68 @@ for (int q = 0; q < SIZE; q++)
 bool is_move_possible(const struct game game){
  for (int i = 0; i < SIZE; i++)
     {
-        for (int j = 0; j < SIZE; j++)
+        for (int j = 0; j < 3; j++)
         {
             if (game.board[i][j]==' ')
             {
                 return true;
             }
-            if (game.board[i][j]==game.board[i][j+1] || game.board[i][j]==game.board[i+1][j]
-            || game.board[i][j]==game.board[i][j-1] || game.board[i][j]==game.board[i-1][j])
+            if (game.board[i][j]==game.board[i][j+1])
             {
+                return true;
+            }
+            
+            
+        }
+        
+    }   
+    for (int i = 0; i < 3; i++)
+    {
+        for (int j = 0; j < SIZE; j++)
+        {
+            
+            if (game.board[i][j]==game.board[i+1][j])
+            {
+              
+               return true;
+            }
+            
+            
+        }
+        
+    }   
+    for (int i = 0; i < SIZE; i++)
+    {
+        for (int j = 1; j < SIZE; j++)
+        {
+            
+          if (game.board[i][j]==game.board[i][j-1])
+            {
+                 
                 return true;
             }
             
         }
         
     }   
+    for (int i = 1; i < SIZE; i++)
+    {
+        for (int j = 0; j < SIZE; j++)
+        {
+            
+          
+            if (game.board[i][j]==game.board[i-1][j])
+            {
+                return true;
+            }
+            
+        }
+        
+    }  
     return false;
 }
 
+           
 bool is_game_won(const struct game game){
     for (int i = 0; i < SIZE; i++)
     {

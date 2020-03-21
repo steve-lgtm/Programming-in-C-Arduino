@@ -12,10 +12,10 @@ int main(int argc, char const *argv[])
 {
 		struct game game = {
     .board = {
-        {'A', ' ', ' ', ' '},
-        {'B', ' ', ' ', 'B'},
-        {'C', 'C', 'C', ' '},
-        {'D', 'D', 'D', 'D'}
+        {'C', 'I', 'F', 'I'},
+	{'H', 'B', 'D', 'C'},
+	{'C', 'I', 'E', 'A'},
+	{'I', 'B', 'F', 'H'}
     },
     .score = 0
 };

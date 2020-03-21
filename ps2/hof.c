@@ -2,6 +2,9 @@
 #include <stdio.h>
 #include "hof.h"
 
+//bool save(const struct player list[], const int size){
+
+//}
 
 int load(struct player list[]){
 FILE *file =fopen(HOF_FILE,"r");
