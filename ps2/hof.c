@@ -6,7 +6,7 @@
 int load(struct player list[]){
 FILE *file =fopen(HOF_FILE,"r");
  if(file == NULL){
-        printf("Error opening file.\n");
+        printf("Error open file.\n");
         exit(EXIT_FAILURE);
 }
 
