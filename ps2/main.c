@@ -42,6 +42,7 @@ printf("%d\n", load(list));
 //printf("%d\n", save(list,10));
 
 
+
 free(list);
 	return 0;
 }
