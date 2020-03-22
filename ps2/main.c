@@ -19,8 +19,9 @@ int main(int argc, char const *argv[])
     },
     .score = 0
 };
-bool result = update(&game, 0, 1);
-add_random_tile(&game);
+
+update(&game, 0, 1);
+//add_random_tile(&game);
 for (int i = 0; i < SIZE; ++i)
 {
 	printf("|");
@@ -33,11 +34,11 @@ for (int i = 0; i < SIZE; ++i)
 
 printf("\n");
 render(game);
-printf("result %d\n", result);
 printf("is won %d\n", is_game_won(game));
+
 printf("is move possible %d\n", is_move_possible(game));
 
-struct player *list=malloc(sizeof(struct player)*10);
+struct player *list=calloc(sizeof(struct player)*10,sizeof(struct player*));
 printf("%d\n", load(list));
 //printf("%d\n", save(list,10));
 
