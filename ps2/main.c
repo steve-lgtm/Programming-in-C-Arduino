@@ -37,7 +37,8 @@ render(game);
 printf("is won %d\n", is_game_won(game));
 
 printf("is move possible %d\n", is_move_possible(game));
-
+if (is_move_possible(game)==true)
+add_random_tile(&game);
 struct player *list=calloc(sizeof(struct player)*10,sizeof(struct player*));
 printf("%d\n", load(list));
 //printf("%d\n", save(list,10));
