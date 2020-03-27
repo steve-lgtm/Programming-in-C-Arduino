@@ -10,7 +10,6 @@ void make(char* cislo);
     
 int main(){
   char cislo[100];
-    printf("zadaj cislo:");
     scanf("%s",cislo);
     for(int j=0;cislo[1] != '\0';j++){
     make(cislo);
