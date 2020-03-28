@@ -5,12 +5,12 @@
 #include <ctype.h>
 #include <stdio.h> 
 
-int myAtoi(char str);
+long myAtoi(char str);
 void make(char* cislo);
     
 int main(){
-  char cislo[100];
-    printf("zadaj cislo:");
+  char cislo[1000000];
+    
     scanf("%s",cislo);
     for(int j=0;cislo[1] != '\0';j++){
     make(cislo);
@@ -19,20 +19,22 @@ int main(){
     return 0;
 }
 
-int myAtoi(char str){ 
-    int res = 0; 
+long myAtoi(char str){ 
+    long res = 0; 
         res = res * 10 + str - '0';
     return res; 
 }
 
 void make(char* cislo){
-int cifra=0;
-    for (int i = 0; i < strlen(cislo); i++)
+long cifra=0;
+    for (long i = 0; i < strlen(cislo); i++)
     {
-        int con=0;
+        long con=0;
         con=myAtoi(cislo[i]);
         cifra=cifra+con;
+        
     }
-    sprintf(cislo, "%d", cifra);    
+   
+    sprintf(cislo, "%ld", cifra);    
 }
 
