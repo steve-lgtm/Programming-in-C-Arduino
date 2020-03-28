@@ -12,7 +12,7 @@ int main(){
   char cislo[1000000];
     
     scanf("%s",cislo);
-    for(int j=0;cislo[1] != '\0';j++){
+    for(long j=0;cislo[1] != '\0';j++){
     make(cislo);
     }
     printf("%s\n",cislo);
