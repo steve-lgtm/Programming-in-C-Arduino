@@ -15,39 +15,46 @@ int main(){
     }
     }
 
-    int LP[pocet][2];
+    long LP[pocet][2];
     
     
 for (int i = 0; i < pocet; i++)
 {
-    int lastl=1000000;
-    int lastp=0;
-    int p=0,l=0;
+    long lastl=1000000;
+    long lastp=0;
+    long p=0,l=0;
     
    for (int j = 1; j < vrstvy; j++)
     {
         if (pole[i][0]>pole[i][j])
         {
             l++;
+            
             if (lastl>pole[i][j]){
             lastl=pole[i][j];
-            l++;
+             l++;
+            
             }
             else{
             lastl=pole[i][j];
             p++;
+            
             }
         }
         else
         {
             p++;
+            
            if (lastp>pole[i][j]){
             lastp=pole[i][j];
-            l++;
+            l=l+lastp;
+            
             }
             else{
             lastp=pole[i][j];
             p++;
+            
+            
             }
         }
         
@@ -87,13 +94,13 @@ for (int i = a+1; i < pocet; i++)
  int result=0;
 result=pocet-zhoda;
 printf("%d\n",result);
-
+/*
     for(int i=0;i<pocet;i++) {
     for (int j=0;j<2;j++) {
-            printf("%d ",LP[i][j]);
+            printf("%ld ",LP[i][j]);
     }
     printf("\n");
-    }
+    }*/
 return 0;
 }   
     
