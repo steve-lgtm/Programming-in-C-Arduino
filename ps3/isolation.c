@@ -76,22 +76,24 @@ for (int i = a+1; i < pocet; i++)
     if (zhodac==2)
 {
     zhoda++;
+    break;
 }
     
 }
+
 
 }
 
  int result=0;
 result=pocet-zhoda;
 printf("%d\n",result);
-/*
+
     for(int i=0;i<pocet;i++) {
     for (int j=0;j<2;j++) {
             printf("%d ",LP[i][j]);
     }
     printf("\n");
-    }*/
+    }
 return 0;
 }   
     
