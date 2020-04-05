@@ -3,7 +3,7 @@
 #include <stdbool.h>
 #include <string.h>
 #include <ctype.h>
-#include <stdio.h> 
+#include <stdio.h>
 int main(){
     long pocet = 0;
     long cas = 0; 
@@ -49,7 +49,7 @@ int main(){
         result = (strop + podlaha) * 0.5;
 
         for (long i = 0; i < pocet; ++i){
-            cas1 += (pretek[i][0] / (pretek[i][1] + result));
+            cas1 =cas1+ (pretek[i][0] / (pretek[i][1] + result));
         }
 
         if((double)cas > cas1) strop = result;
