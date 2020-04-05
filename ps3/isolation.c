@@ -6,7 +6,9 @@
 #include <stdio.h> 
 
 int main(){
+    //deklar
     int pocet=0,vrstvy=0;
+    //nahraj
     scanf("%d %d",&pocet,&vrstvy);
     int pole[pocet][vrstvy];
     for(int i=0;i<pocet;i++) {
@@ -16,7 +18,7 @@ int main(){
     }
 
     long LP[pocet][2];
-    
+    //make
     
 for (int i = 0; i < pocet; i++)
 {
@@ -78,7 +80,7 @@ for (int i = 0; i < pocet; i++)
     LP[i][1]=p;
 
 }
-
+//vyhodnot
 int zhoda=0;
 
 for (int a = 0; a < pocet-1; a++)
@@ -108,7 +110,7 @@ for (int i = a+1; i < pocet; i++)
 
 
 }
-
+//vysledok
  int result=0;
 result=pocet-zhoda;
 printf("%d\n",result);
