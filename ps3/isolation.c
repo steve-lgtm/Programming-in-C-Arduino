@@ -22,37 +22,52 @@ for (int i = 0; i < pocet; i++)
 {
     long lastl=1000000;
     long lastp=0;
+    long lastpo=0;
+    long lastlo=1000000;
     long p=0,l=0;
     
    for (int j = 1; j < vrstvy; j++)
     {
         if (pole[i][0]>pole[i][j])
         {
+            
             l++;
-            
             if (lastl>pole[i][j]){
-            lastl=pole[i][j];
-             l++;
             
+            lastl=pole[i][j];
+              l++;
+              
             }
             else{
-            lastl=pole[i][j];
-            p++;
+            if(lastlo>pole[i][j]){
+            lastlo=pole[i][j];
+            p=p+j;}
+            else
+            {
+                l=l+j;
+            }
+            
             
             }
         }
         else
         {
-            p++;
             
+           p++;
            if (lastp>pole[i][j]){
-            lastp=pole[i][j];
-            l=l+lastp;
+            if(lastpo<pole[i][j]){
+            lastpo=pole[i][j];
+            l=l+j;}
+            else
+            {
+                p=p+j;
+            }
             
             }
             else{
+            
             lastp=pole[i][j];
-            p++;
+           p++;
             
             
             }
@@ -71,9 +86,11 @@ for (int a = 0; a < pocet-1; a++)
       
 for (int i = a+1; i < pocet; i++)
 {
-    int zhodac=0;  
+    int zhodac=0; 
+    
     for (int j = 0; j < 2; j++)
     {
+    
        if (LP[a][j]==LP[i][j])
     {
         zhodac++;
@@ -84,6 +101,7 @@ for (int i = a+1; i < pocet; i++)
 {
     zhoda++;
     break;
+    
 }
     
 }
