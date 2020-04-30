@@ -5,14 +5,17 @@
 #include <ctype.h>
 #include "bmp.h"
 int main(){
-    struct bmp_header* read_bmp_header(FILE* stream);
+    struct bmp_header* read_bmp_header(FILE *write_ptr);
+	
 }
-struct bmp_header* read_bmp_header(FILE* stream){
-if(stream == NULL){
+struct bmp_header* read_bmp_header(FILE *write_ptr){
+write_ptr = fopen("stream","wb");
+if(write_ptr == NULL){
 		return NULL;
 	}
+	
 	struct bmp_header* header=malloc(sizeof(struct bmp_header));
-	if(fread (header, sizeof (struct bmp_header), 1, stream) != 1 ) {
+	if(fread (header, sizeof (struct bmp_header), 1, write_ptr) != 1 ) {
 		free(header);
 		return NULL;
 	}
@@ -20,5 +23,11 @@ if(stream == NULL){
 		free(header);
 		return NULL;
 	}
+	printf("fdsfd");
+	printf("%d hhgh",header -> type);
+	fclose(write_ptr);
 	return header;
 }
+//struct pixel* read_data(FILE* write_ptr, const struct bmp_header* header){
+
+//}
