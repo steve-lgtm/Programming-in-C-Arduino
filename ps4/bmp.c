@@ -23,6 +23,7 @@ struct bmp_header* read_bmp_header(FILE *stream){
 	}
 	if(stream == NULL){
 		return NULL;
+		free(header);
 	}
 	return header;
 }
