@@ -13,6 +13,9 @@ struct bmp_header* read_bmp_header(FILE *stream){
 
 	
 	struct bmp_header* header=malloc(sizeof(struct bmp_header));
+	if(stream == NULL){
+		free(header);
+		return NULL;}
 	if(fread (header, sizeof (struct bmp_header), 1, stream) != 1 ) {
 		free(header);
 		return NULL;
@@ -21,10 +24,9 @@ struct bmp_header* read_bmp_header(FILE *stream){
 		free(header);
 		return NULL;
 	}
-	if(stream == NULL){
-		return NULL;
-		free(header);
-	}
+	
+		
+	
 	return header;
 }
 //struct pixel* read_data(FILE* stream, const struct bmp_header* header){

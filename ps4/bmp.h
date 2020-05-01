@@ -29,7 +29,7 @@ struct bmp_header{
     uint32_t y_ppm;             // X Pixels per meter (0)
     uint32_t num_colors;        // number of colors (0)
     uint32_t important_colors;  // important colors (0)
-}  __attribute__((__packed__));
+} __attribute__((__packed__));
 
 
 /**
