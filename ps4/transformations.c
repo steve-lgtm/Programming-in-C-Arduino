@@ -20,8 +20,8 @@ if(image==NULL){
 	uint32_t height=image -> header -> height;
 	uint32_t width=image -> header -> width;
 	struct pixel* pixely = malloc(sizeof(struct pixel)*height*width);
-	for (uint32_t i = 0; i < width; i++){
-		for(uint32_t j = 0;j<height;j++){
+	for (uint32_t i = 0; i < height; i++){
+		for(uint32_t j = 0;j<width;j++){
 			pixely[(i*width)+j].red=image -> data[(i*width)+width-j-1].red;
 			pixely[(i*width)+j].blue=image -> data[(i*width)+width-j-1].blue;
             pixely[(i*width)+j].green=image -> data[(i*width)+width-j-1].green;
@@ -40,12 +40,14 @@ if(image==NULL){
 	new -> header -> reserved1= image -> header->reserved1;
 	new -> header ->reserved2 = image -> header->reserved2;
 	new -> header ->offset = image -> header->offset;
-	new -> header ->important_colors = image -> header->important_colors;
 	new -> header ->width = image -> header->width;
 	new -> header ->y_ppm = image -> header->y_ppm;
 	new -> header ->compression = image -> header->compression;
 	new -> header ->image_size = image -> header->image_size;
 	new -> header -> x_ppm= image -> header->x_ppm;
+	new -> header -> height= image -> header->height;
+	
+	
 	//kopiruj pixely horizontal
 	new -> data =pixely;
 	return new;		
