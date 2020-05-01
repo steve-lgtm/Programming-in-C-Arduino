@@ -8,7 +8,9 @@
 
 int main(int argc, char const *argv[]){
     FILE *fp=fopen(argv[1],"rb");
-    struct bmp_image* bmp1=read_bmp(fp);
-    free_bmp_image(bmp1);
+    struct bmp_image* bmp=read_bmp(fp);
+    struct bmp_image* l=flip_horizontally(bmp);
+    free_bmp_image(bmp);
+    free_bmp_image(l);
     fclose(fp);
 }
