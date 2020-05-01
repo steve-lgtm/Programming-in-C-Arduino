@@ -4,6 +4,7 @@
 #include <string.h>
 #include <ctype.h>
 #include "bmp.h"
+
 int main(){
     struct bmp_header* read_bmp_header(FILE *stream);
 	
