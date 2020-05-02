@@ -69,9 +69,9 @@ struct bmp_image* flip_vertically(const struct bmp_image* image){
 	struct pixel* pixely = malloc(sizeof(struct pixel)*height*width);
 	for (uint32_t i = 0; i < height; i++){
 		for(uint32_t j = 0;j<width;j++){
-			pixely[(i*width)+j].red=image -> data[(width-i-1)*width].red;
-			pixely[(i*width)+j].blue=image -> data[(width-i-1)*width].blue;
-            pixely[(i*width)+j].green=image -> data[(width-i-1)*width].green;
+			pixely[(i*width)+j].red=image -> data[((width-i-1)*width)+j].red;
+			pixely[(i*width)+j].blue=image -> data[((width-i-1)*width)+j].blue;
+            pixely[(i*width)+j].green=image -> data[((width-i-1)*width)+j].green;
 			
 			
 		}
