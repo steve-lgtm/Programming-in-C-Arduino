@@ -33,7 +33,7 @@ struct bmp_header* read_bmp_header(FILE *stream){
 		free(header);
 		return NULL;
 	}
-uint32_t width =header -> width;
+
 	
 		
 	
