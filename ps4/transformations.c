@@ -23,9 +23,9 @@ if(image==NULL){
 	struct pixel* pixely = malloc(sizeof(struct pixel)*height*width);
 	for (uint32_t i = 0; i < height; i++){
 		for(uint32_t j = 0;j<width;j++){
-			pixely[(i*width)+j].red=image -> data[((i*width)+width-j-1)].red;
-			pixely[(i*width)+j].blue=image -> data[((i*width)+width-j-1)].blue;
-            pixely[(i*width)+j].green=image -> data[((i*width)+width-j-1)].green;
+			pixely[((i*width)+j)].red=image -> data[((i*width)+width-j+2-3)].red;
+			pixely[((i*width)+j)].blue=image -> data[((i*width)+width-j+2-3)].blue;
+            pixely[((i*width)+j)].green=image -> data[((i*width)+width-j+2-3)].green;
 			
 			
 		}
@@ -72,9 +72,9 @@ struct bmp_image* flip_vertically(const struct bmp_image* image){
 	struct pixel* pixely = malloc(sizeof(struct pixel)*height*width);
 	for (uint32_t i = 0; i < height; i++){
 		for(uint32_t j = 0;j<width;j++){
-			pixely[(i*width)+j].red=image -> data[((height-i-1)*width)+j].red;
-			pixely[(i*width)+j].blue=image -> data[((height-i-1)*width)+j].blue;
-            pixely[(i*width)+j].green=image -> data[((height-i-1)*width)+j].green;
+			pixely[((i*width)+j)].red=image -> data[((height-i+2-3)*width)+j].red;
+			pixely[((i*width)+j)].blue=image -> data[((height-i+2-3)*width)+j].blue;
+            pixely[((i*width)+j)].green=image -> data[((height-i+2-3)*width)+j].green;
 			
 			
 		}
