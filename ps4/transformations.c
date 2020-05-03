@@ -128,9 +128,9 @@ struct bmp_image* rotate_left(const struct bmp_image* image){
 	struct pixel* pixely = malloc(sizeof(struct pixel)*height*width);
 	for (uint32_t i = 0; i < height; i++){
 		for(uint32_t j = 0;j<width;j++){
-			pixely[(i*width)+j].blue=image -> data[(j*height)+height-i-1].blue;
-			pixely[(j*height)+height-i].red=image -> data[(j*height)+height-i-1].red;
-			pixely[(j*height)+height-i].green=image -> data[(j*height)+height-i-1].green;
+			pixely[(i*width)+width-j-1].blue=image -> data[(j*height)+i].blue;
+			pixely[(i*width)+width-j-1].red=image -> data[(j*height)+i].red;
+			pixely[(i*width)+width-j-1].green=image -> data[(j*height)+i].green;
 			
 			
 		}	
