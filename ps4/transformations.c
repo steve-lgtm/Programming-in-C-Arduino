@@ -72,9 +72,9 @@ struct bmp_image* flip_vertically(const struct bmp_image* image){
 	struct pixel* pixely = malloc(sizeof(struct pixel)*height*width);
 	for (uint32_t i = 0; i < height; i++){
 		for(uint32_t j = 0;j<width;j++){
-			pixely[(i*width)+j].red=image -> data[((i*width)+width-j-1)].red;
-			pixely[(i*width)+j].blue=image -> data[((i*width)+width-j-1)].blue;
-            pixely[(i*width)+j].green=image -> data[((i*width)+width-j-1)].green;
+			pixely[(i*width)+j].red=image -> data[((height-i-1)*width)+j].red;
+			pixely[(i*width)+j].blue=image -> data[((height-i-1)*width)+j].blue;
+            pixely[(i*width)+j].green=image -> data[((height-i-1)*width)+j].green;
 			
 			
 		}
@@ -113,17 +113,7 @@ struct bmp_image* rotate_left(const struct bmp_image* image){
 	struct bmp_image * new = malloc(sizeof(struct bmp_image));
 	new -> header ->compression = image -> header->compression;
 	new -> header = malloc(sizeof(struct bmp_header));
-	new -> header -> type = image -> header->type;
-	new -> header -> x_ppm= image -> header->x_ppm;
-	new -> header ->y_ppm = image -> header->y_ppm;
-	new -> header -> reserved1= image -> header->reserved1;
-	new -> header ->reserved2 = image -> header->reserved2;
-	new -> header ->offset = image -> header->offset;
-	new -> header ->dib_size = image -> header->dib_size;
-	new -> header ->num_colors = image -> header->num_colors;
-	new -> header ->important_colors = image -> header->important_colors;
-	new -> header ->planes = image -> header->planes;
-	new -> header -> bpp= image -> header->bpp;
+	
 	// width height
 	uint32_t width=image -> header -> height;
 	uint32_t height=image -> header -> width;
@@ -138,13 +128,25 @@ struct bmp_image* rotate_left(const struct bmp_image* image){
 	struct pixel* pixely = malloc(sizeof(struct pixel)*height*width);
 	for (uint32_t i = 0; i < height; i++){
 		for(uint32_t j = 0;j<width;j++){
-			pixely[(j*height)+height-i].blue=image -> data[(i*width)+j].blue;
-			pixely[(j*height)+height-i].red=image -> data[(i*width)+j].red;
-			pixely[(j*height)+height-i].green=image -> data[(i*width)+j].green;
+			pixely[(i*width)+j].blue=image -> data[(j*height)+height-i-1].blue;
+			pixely[(j*height)+height-i].red=image -> data[(j*height)+height-i-1].red;
+			pixely[(j*height)+height-i].green=image -> data[(j*height)+height-i-1].green;
 			
 			
 		}	
 	}
+	//kopiruj
+	new -> header -> type = image -> header->type;
+	new -> header -> x_ppm= image -> header->x_ppm;
+	new -> header ->y_ppm = image -> header->y_ppm;
+	new -> header -> reserved1= image -> header->reserved1;
+	new -> header ->reserved2 = image -> header->reserved2;
+	new -> header ->offset = image -> header->offset;
+	new -> header ->dib_size = image -> header->dib_size;
+	new -> header ->num_colors = image -> header->num_colors;
+	new -> header ->important_colors = image -> header->important_colors;
+	new -> header ->planes = image -> header->planes;
+	new -> header -> bpp= image -> header->bpp;
 	new -> data =pixely;
 	return new;		
 	}
