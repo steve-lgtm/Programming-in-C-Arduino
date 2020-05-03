@@ -65,6 +65,8 @@ struct bmp_image* flip_vertically(const struct bmp_image* image){
 	struct bmp_image * new = malloc(sizeof(struct bmp_image));
 	//pixely vertical
     new -> header = malloc(sizeof(struct bmp_header));
+	new -> header -> height= image -> header->height;
+	new -> header ->width = image -> header->width;
 	uint32_t height=image -> header -> height;
 	uint32_t width=image -> header -> width;
 	struct pixel* pixely = malloc(sizeof(struct pixel)*height*width);
@@ -88,12 +90,12 @@ struct bmp_image* flip_vertically(const struct bmp_image* image){
 	new -> header -> reserved1= image -> header->reserved1;
 	new -> header ->reserved2 = image -> header->reserved2;
 	new -> header ->offset = image -> header->offset;
-	new -> header ->width = image -> header->width;
+	
 	new -> header ->y_ppm = image -> header->y_ppm;
 	new -> header ->compression = image -> header->compression;
 	new -> header ->image_size = image -> header->image_size;
 	new -> header -> x_ppm= image -> header->x_ppm;
-	new -> header -> height= image -> header->height;
+	
 	
 	
 	//kopiruj pixely vertical
