@@ -17,7 +17,7 @@ struct bmp_header* read_bmp_header(FILE *stream){
 	if(stream == NULL){
 		free(header);
 		return NULL;}
-		Fseek(stream,0,SEEK_SET);
+		fseek(stream,0,SEEK_SET);
 	if(fread (header, sizeof (struct bmp_header), 1, stream) != 1 ) {
 		free(header);
 		return NULL;
