@@ -15,16 +15,21 @@ first->command=entry;
 first->item=entry;
 first->room=entry;
 first->text=entry;
-struct container * new = malloc(sizeof(struct container));
+/*struct container * new = malloc(sizeof(struct container));
 new->type=type;
 new->command=entry;
 new->item=entry;
 new->room=entry;
-new->text=entry;
-    if (first->type!=new->type)
+new->text=entry;*/
+    if (first->type!=type)
     {
         return NULL;
     }
 
-   return new; 
+   return first; 
+}
+
+struct container* destroy_containers(struct container* first){
+    free(first);
+    return NULL;
 }
