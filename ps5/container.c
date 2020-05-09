@@ -11,7 +11,7 @@ struct container* create_container(struct container* first, enum container_type 
         return NULL;
     }
     if(first==NULL){
-        struct container * new=malloc(sizeof(struct container));
+        struct container * new=calloc(1,sizeof(struct container));
         char *text;
         new->type=type;
         switch (type)
@@ -31,17 +31,19 @@ struct container* create_container(struct container* first, enum container_type 
         case TEXT:
             text=malloc((strlen(entry)+1));
             strcpy(text,entry);
+            
             new->text=text;
             break;
         
         }
+       
         return new;
     }
    if(first!=NULL){
        if(first->type!=type)
            return NULL;
            else{
-        struct container * new=malloc(sizeof(struct container));
+        struct container * new=calloc(1,sizeof(struct container));
         char *text;
         new->type=type;
         switch (type)
@@ -68,10 +70,12 @@ struct container* create_container(struct container* first, enum container_type 
             first=first->next;
         }
         first->next=new;
+        
         return new;
            }
            
        }
+       
 return NULL;
    }
 
