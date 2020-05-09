@@ -4,6 +4,16 @@
 #include <stdbool.h>
 #include <string.h>
 #include <ctype.h>
+#include <stddef.h>
+int compare(const char *first, const char *second);
+int compare(const char *first, const char *second){
+	if(first == NULL || second == NULL) return -1;
+	int diff = 0;
+	for(; diff == 0 && *first != '\0' ;++first, ++second){
+		diff = tolower((unsigned int)*first) - tolower((unsigned int)*second);			
+	}
+	return diff;
+}
 
 struct container* create_container(struct container* first, enum container_type type, void* entry){
     if(entry==NULL)
@@ -114,4 +124,45 @@ struct container* destroy_containers(struct container* first){
     }
     free(first);
     return NULL;
+}
+void* get_from_container_by_name(struct container *first, const char *name){
+if(first == NULL || name == NULL){ 
+    return NULL;
+}
+struct container *finded =first; 
+while (finded !=NULL)
+{
+    switch (finded->type)
+{
+case ROOM:
+    if(compare(finded->room->name,name)==0)
+    return finded;
+    else
+    finded=finded->next;
+    break;
+case ITEM:
+    if(compare
+(finded->item->name,name)==0)
+    return finded;
+    else
+    finded=finded->next;
+    break;
+case COMMAND:
+    if(compare
+(finded->command->name,name)==0)
+    return finded;
+    else
+    finded=finded->next;
+    break;
+case TEXT:
+    if(compare
+(finded->text,name)==0)
+    return finded;
+    else
+    finded=finded->next;
+    break;
+}
+}
+
+return NULL;
 }
