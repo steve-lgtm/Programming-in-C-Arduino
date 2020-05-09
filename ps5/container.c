@@ -37,7 +37,6 @@ struct container* create_container(struct container* first, enum container_type 
         }
         return new;
     }
-   return first; 
    if(first!=NULL){
        if(first->type!=type)
            return NULL;
@@ -73,11 +72,42 @@ struct container* create_container(struct container* first, enum container_type 
            }
            
        }
-
+return NULL;
    }
 
 
 struct container* destroy_containers(struct container* first){
-    free(first);
+    if(first!=NULL){
+        struct container *new=first->next;
+        switch(first->type){
+            case ROOM:
+            if (first->type ==ROOM &&first->room!=NULL)
+            {
+                destroy_room(first->room);
+                free(first);
+            }
+            break;
+            case ITEM:
+            if (first->type==ITEM && first->item!=NULL)
+            {
+                destroy_item(first->item);
+                free(first);
+            }
+            case COMMAND:
+            if (first->type==COMMAND && first->command!=NULL)
+            {
+                destroy_command(first->command);
+                free(first);
+            }
+            case TEXT:
+            if (first->type==TEXT && first->text!=NULL)
+            {
+                free(first->text);
+                free(first);
+            }
+            
+        }
+        destroy_containers(new);
+    }
     return NULL;
 }
