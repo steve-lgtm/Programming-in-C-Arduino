@@ -15,6 +15,5 @@
 int main(){
     struct container* create_container(struct container* first, enum container_type type, void* entry);
     struct container* destroy_containers(struct container* first);
-  
-
+    
 }

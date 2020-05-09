@@ -110,6 +110,8 @@ struct container* destroy_containers(struct container* first){
             
         }
         destroy_containers(new);
+        
     }
+    free(first);
     return NULL;
 }
