@@ -14,11 +14,11 @@ struct container* remove_container(struct container *first, void *entry){
     struct container *new=first;
    
     int i=0;
-    
+    switch (first->type){
     while (i>=1)
     {
-        switch (first->type)
-        {
+        
+        
         case ROOM:
             if (new->room==entry)
             {
@@ -99,7 +99,7 @@ struct container* create_container(struct container* first, enum container_type 
            return NULL;
            else{
         struct container * new=calloc(10,sizeof(struct container));
-        char *text=calloc(100,1);
+        char *text;
         new->type=type;
         switch (type)
         {
@@ -116,7 +116,7 @@ struct container* create_container(struct container* first, enum container_type 
             break;
         
         case TEXT:
-                        
+                   text=calloc(100,1);     
         strcpy(text, entry);
                         new->text = text;
     
@@ -127,7 +127,7 @@ struct container* create_container(struct container* first, enum container_type 
             first=first->next;
         }
         first->next=new;
-        free(text);
+        
         return new;
            
            }
@@ -191,10 +191,11 @@ if(first == NULL || name == NULL){
     return NULL;
 }
 struct container *finded =first; 
+switch (finded->type){
 while (finded !=NULL)
 {
-    switch (finded->type)
-{
+    
+
 case ROOM:
     if(strcicmp(finded->room->name,name)==0)
     return finded;
