@@ -17,5 +17,6 @@ int main(){
     struct container* destroy_containers(struct container* first);
     void* get_from_container_by_name(struct container *first, const char *name);
     struct container* remove_container(struct container *first, void *entry);
+struct room* create_room(char *name, char *description);
 
 }
