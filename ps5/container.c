@@ -99,7 +99,7 @@ struct container* create_container(struct container* first, enum container_type 
            return NULL;
            else{
         struct container * new=calloc(10,sizeof(struct container));
-        
+        char *text=calloc(100,1);
         new->type=type;
         switch (type)
         {
@@ -116,7 +116,10 @@ struct container* create_container(struct container* first, enum container_type 
             break;
         
         case TEXT:
-    new->text=entry;
+                        
+        strcpy(text, entry);
+                        new->text = text;
+    
 
             break;
         }
@@ -124,8 +127,9 @@ struct container* create_container(struct container* first, enum container_type 
             first=first->next;
         }
         first->next=new;
-        
+        free(text);
         return new;
+           
            }
            
        }
@@ -162,6 +166,7 @@ struct container* destroy_containers(struct container* first){
             {
                 free(first->text);
                 free(first);
+                
             }
             
         }
