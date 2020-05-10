@@ -97,7 +97,7 @@ struct container* create_container(struct container* first, enum container_type 
            return NULL;
            else{
         struct container * new=calloc(10,sizeof(struct container));
-        char *text;
+        
         new->type=type;
         switch (type)
         {
@@ -114,9 +114,7 @@ struct container* create_container(struct container* first, enum container_type 
             break;
         
         case TEXT:
-            text = calloc(100,strlen(entry)+1);
-                        strcpy(text, entry);
-                        new->text = text;
+    new->text=entry;
 
             break;
         }
