@@ -5,8 +5,59 @@
 #include <string.h>
 #include <strings.h>
 #include <ctype.h>
-#include <stddef.h>
 
+
+struct container* remove_container(struct container *first, void *entry){
+    if (entry==NULL || first==NULL){
+        return NULL;}
+    struct container *new=first;
+    int i=0;
+    
+    while (i>1)
+    {
+        switch (first->type)
+        {
+        case ROOM:
+            if (new->room==entry)
+            {
+                first=first->next;
+                return first;
+                i++;
+            }
+            break;
+        case ITEM:
+            if (new->item==entry)
+            {
+                first=first->next;
+                return first;
+                i++;
+            }
+            break;
+        case COMMAND:
+            if (new->command==entry)
+            {
+                first=first->next;
+                return first;
+                i++;
+            }
+            break;
+        case TEXT:
+            if (new->text==entry)
+            {
+                first=first->next;
+                return first;
+                i++;
+            }
+            break;
+        }
+        new=new->next;
+    }
+    if(first==NULL)
+    return NULL;
+
+    return first;
+    
+}
 
 struct container* create_container(struct container* first, enum container_type type, void* entry){
     if(entry==NULL)
@@ -14,7 +65,7 @@ struct container* create_container(struct container* first, enum container_type 
         return NULL;
     }
     if(first==NULL){
-        struct container * new=calloc(1,sizeof(struct container));
+        struct container * new=calloc(10,sizeof(struct container));
         
         new->type=type;
         switch (type)
@@ -45,8 +96,8 @@ struct container* create_container(struct container* first, enum container_type 
        if(first->type!=type)
            return NULL;
            else{
-        struct container * new=calloc(1,sizeof(struct container));
-        
+        struct container * new=calloc(10,sizeof(struct container));
+        char *text;
         new->type=type;
         switch (type)
         {
@@ -63,8 +114,10 @@ struct container* create_container(struct container* first, enum container_type 
             break;
         
         case TEXT:
-            
-            new->text=entry;
+            text = calloc(100,strlen(entry)+1);
+                        strcpy(text, entry);
+                        new->text = text;
+
             break;
         }
         while(first->next!=NULL){
@@ -89,33 +142,33 @@ struct container* destroy_containers(struct container* first){
             if (first->type ==ROOM &&first->room!=NULL)
             {
                 destroy_room(first->room);
-                free(first);
+                
             }
             break;
             case ITEM:
             if (first->type==ITEM && first->item!=NULL)
             {
                 destroy_item(first->item);
-                free(first);
+                
             }
             case COMMAND:
             if (first->type==COMMAND && first->command!=NULL)
             {
                 destroy_command(first->command);
-                free(first);
+                
             }
             case TEXT:
             if (first->type==TEXT && first->text!=NULL)
             {
                 free(first->text);
-                free(first);
+                
             }
             
         }
         destroy_containers(new);
         
     }
-    free(first);
+    
     return NULL;
 }
 void* get_from_container_by_name(struct container *first, const char *name){
