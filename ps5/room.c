@@ -10,6 +10,8 @@ struct room* destroy_room(struct room* room){
 }
 
 struct room* create_room(char *name, char *description){
+    if (name==NULL ||description==NULL)
+    return NULL;
     struct room* new=calloc(1,sizeof(struct room));
     char *meno=calloc(strlen(name)+10,sizeof(char*));
     char *opis=calloc(strlen(description)+10,sizeof(char*));
