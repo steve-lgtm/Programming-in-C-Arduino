@@ -5,15 +5,17 @@
 #include <string.h>
 #include <strings.h>
 #include <ctype.h>
+int strcicmp(char const *first, char const *second);
 
 
 struct container* remove_container(struct container *first, void *entry){
-    if (entry==NULL || first==NULL){
+    if (first==NULL){
         return NULL;}
     struct container *new=first;
+   
     int i=0;
     
-    while (i>1)
+    while (i>=1)
     {
         switch (first->type)
         {
@@ -140,26 +142,26 @@ struct container* destroy_containers(struct container* first){
             if (first->type ==ROOM &&first->room!=NULL)
             {
                 destroy_room(first->room);
-                
+                free(first);
             }
             break;
             case ITEM:
             if (first->type==ITEM && first->item!=NULL)
             {
                 destroy_item(first->item);
-                
+                free(first);
             }
             case COMMAND:
             if (first->type==COMMAND && first->command!=NULL)
             {
                 destroy_command(first->command);
-                
+                free(first);
             }
             case TEXT:
             if (first->type==TEXT && first->text!=NULL)
             {
                 free(first->text);
-                
+                free(first);
             }
             
         }
@@ -169,6 +171,16 @@ struct container* destroy_containers(struct container* first){
     
     return NULL;
 }
+int strcicmp(const char *first, const char *second){
+	if(first == NULL || second == NULL) return -1;
+	int diff = 0;
+	for(; diff == 0 && *first != '\0' ;++first, ++second){
+		diff = tolower((unsigned int)*first) - tolower((unsigned int)*second);			
+	}
+	return diff;
+}
+
+
 void* get_from_container_by_name(struct container *first, const char *name){
 if(first == NULL || name == NULL){ 
     return NULL;
@@ -179,25 +191,25 @@ while (finded !=NULL)
     switch (finded->type)
 {
 case ROOM:
-    if(strcasecmp(finded->room->name,name)==0)
+    if(strcicmp(finded->room->name,name)==0)
     return finded;
     else
     finded=finded->next;
     break;
 case ITEM:
-    if(strcasecmp(finded->item->name,name)==0)
+    if(strcicmp(finded->item->name,name)==0)
     return finded;
     else
     finded=finded->next;
     break;
 case COMMAND:
-    if(strcasecmp(finded->command->name,name)==0)
+    if(strcicmp(finded->command->name,name)==0)
     return finded;
     else
     finded=finded->next;
     break;
 case TEXT:
-    if(strcasecmp(finded->text,name)==0)
+    if(strcicmp(finded->text,name)==0)
     return finded;
     else
     finded=finded->next;
