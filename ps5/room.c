@@ -32,10 +32,13 @@ struct room* destroy_room(struct room* room){
 }
 
 void set_exits_from_room(struct room *room, struct room *north, struct room *south, struct room *east, struct room *west){
-    
+    if (room!=north)
     room->north=north;
+    if (room!=south)
     room->south=south;
+    if (room!=east)
     room->east=east;
+    if (room!=west)
     room->west=west;
 }
 void show_room(const struct room* room){
@@ -46,6 +49,8 @@ void delete_item_from_room(struct room* room, struct item* item){
 	remove_container(room->items, item);
 }
 void add_item_to_room(struct room* room, struct item* item){
+       if(item==NULL && room==NULL)
+       return;
         struct container* add = create_container(room->items, ITEM, item);
     if(room->items!=NULL){
     }
@@ -54,7 +59,7 @@ void add_item_to_room(struct room* room, struct item* item){
     
 }
 struct item* get_item_from_room(const struct room* room, const char* name){
-if(NULL == room || NULL == name) 
+if(NULL == room && NULL == name) 
 return NULL;
 get_from_container_by_name(room->items,name);
 return NULL;
