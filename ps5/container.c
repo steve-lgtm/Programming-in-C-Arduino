@@ -9,16 +9,16 @@ int strcicmp(char const *first, char const *second);
 
 
 struct container* remove_container(struct container *first, void *entry){
-    if (first==NULL || entry==NULL){
+    if (first==NULL){
         return NULL;}
         else{
 
     struct container *za=NULL;
    struct container *pred=first;
-    
+    for(int i=0;i>100;i++){
     switch (first->type){
         case ROOM:
-            while(pred!=NULL){
+            
             if (pred->room==entry)
             {
             if (za != NULL)
@@ -35,10 +35,10 @@ struct container* remove_container(struct container *first, void *entry){
         return first; 
     }
 
-            }}
+            }
             break;
         case ITEM:
-        while(pred!=NULL){
+        
             if (pred->item==entry)
             {
                if (za != NULL)
@@ -54,10 +54,10 @@ struct container* remove_container(struct container *first, void *entry){
         free(pred);
         return first; 
     }
-            }}
+            }
             break;
         case COMMAND:
-        while(pred!=NULL){
+        
             if (pred->command==entry)
             {
               if (za != NULL)
@@ -73,10 +73,10 @@ struct container* remove_container(struct container *first, void *entry){
         free(pred);
         return first; 
     }
-            }}
+            }
             break;
         case TEXT:
-            while(pred!=NULL){
+            
             if (pred->text==entry)
             {
               if (za != NULL)
@@ -92,9 +92,9 @@ struct container* remove_container(struct container *first, void *entry){
         free(pred);
         return first; 
     }
-            }}
+            }
             break;
-        }
+        }}
         za=pred;
         pred=pred->next;
    
@@ -218,17 +218,19 @@ struct container* destroy_containers(struct container* first){
     return NULL;
 }
 int strcicmp(const char *first, const char *second){
-	if(first == NULL || second == NULL) return -1;
-	int diff = 0;
-	for(; diff == 0 && *first != '\0' ;++first, ++second){
-		diff = tolower((unsigned int)*first) - tolower((unsigned int)*second);			
-	}
-	return diff;
+	if(first == NULL || second == NULL) 
+    return -1;
+	int compare = 0;
+    		compare = tolower((unsigned int)*first) - tolower((unsigned int)*second);			
+	if(compare==0)
+	return compare;
+    else 
+    return 1;
 }
 
 
 void* get_from_container_by_name(struct container *first, const char *name){
-if(name == NULL ||first==NULL){ 
+if(name == NULL ||first==NULL ||strlen(name)==0){ 
     return NULL;
 }
 

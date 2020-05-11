@@ -4,6 +4,7 @@
 #include <stdbool.h>
 #include <string.h>
 #include <ctype.h>
+#include<regex.h>
 
 struct command* create_command(char* name, char* description, char* pattern, size_t nmatch){
     if (name==NULL ||description==NULL||strlen(name)==0||strlen(description)==0)
@@ -18,6 +19,11 @@ strcpy(opis,description);
 
 new->name=meno;
 new->description=opis;
+//regex? try #include <regex.h> int regcomp(regex_t *preg, const char *pattern, int cflags);
+regex_t comp;
+regcomp(&comp, pattern, 0);
+new->preg = comp;
+
 new->groups=&pattern;
 new->nmatch=nmatch;
 
