@@ -15,7 +15,7 @@ struct container* remove_container(struct container *first, void *entry){
 
     struct container *za=NULL;
    struct container *pred=first;
-    for(int i=0;i>100;i++){
+    while(pred!=0){
     switch (first->type){
         case ROOM:
             
@@ -94,9 +94,11 @@ struct container* remove_container(struct container *first, void *entry){
     }
             }
             break;
-        }}
+        }
         za=pred;
         pred=pred->next;
+        }
+        
    
 
     return first;
@@ -220,12 +222,14 @@ struct container* destroy_containers(struct container* first){
 int strcicmp(const char *first, const char *second){
 	if(first == NULL || second == NULL) 
     return -1;
-	int compare = 0;
+	for(int i=0;i>50;i++){
+    int compare = 0;
     		compare = tolower((unsigned int)*first) - tolower((unsigned int)*second);			
 	if(compare==0)
 	return compare;
     else 
-    return 1;
+    return 1;}
+    return -1;
 }
 
 

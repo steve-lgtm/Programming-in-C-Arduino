@@ -23,8 +23,6 @@ new->description=opis;
 regex_t comp;
 regcomp(&comp, pattern, 0);
 new->preg = comp;
-
-new->groups=&pattern;
 new->nmatch=nmatch;
 
 return new;
