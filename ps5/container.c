@@ -9,19 +9,16 @@ int strcicmp(char const *first, char const *second);
 
 
 struct container* remove_container(struct container *first, void *entry){
-    if (first==NULL){
+    if (first==NULL || entry==NULL){
         return NULL;}
         else{
-    
+
     struct container *za=NULL;
    struct container *pred=first;
     
     switch (first->type){
-    
-        
-        
         case ROOM:
-            for(int i=0;i<100;i++){
+            while(pred!=NULL){
             if (pred->room==entry)
             {
             if (za != NULL)
@@ -41,7 +38,7 @@ struct container* remove_container(struct container *first, void *entry){
             }}
             break;
         case ITEM:
-        for(int i=0;i<100;i++){
+        while(pred!=NULL){
             if (pred->item==entry)
             {
                if (za != NULL)
@@ -60,7 +57,7 @@ struct container* remove_container(struct container *first, void *entry){
             }}
             break;
         case COMMAND:
-        for(int i=0;i<100;i++){
+        while(pred!=NULL){
             if (pred->command==entry)
             {
               if (za != NULL)
@@ -79,7 +76,7 @@ struct container* remove_container(struct container *first, void *entry){
             }}
             break;
         case TEXT:
-            for(int i=0;i<100;i++){
+            while(pred!=NULL){
             if (pred->text==entry)
             {
               if (za != NULL)
@@ -234,38 +231,38 @@ void* get_from_container_by_name(struct container *first, const char *name){
 if(name == NULL ||first==NULL){ 
     return NULL;
 }
-struct container *finded =first; 
-switch (finded->type){    
+
+switch (first->type){    
 
 
 
 case ROOM:
-    for(int i=0;i<20;i++){
-    if(strcicmp(finded->room->name,name)==0)
-    return finded;
+    for(int i=0;i<50;i++){
+    if(strcicmp(first->room->name,name)==0)
+    return first;
     else
-    finded=finded->next;}
+    first=first->next;}
     break;
 case ITEM:
-for(int i=0;i<20;i++){
-    if(strcicmp(finded->item->name,name)==0)
-    return finded;
+for(int i=0;i<50;i++){
+    if(strcicmp(first->item->name,name)==0)
+    return first;
     else
-    finded=finded->next;}
+    first=first->next;}
     break;
 case COMMAND:
-for(int i=0;i<20;i++){
-    if(strcicmp(finded->command->name,name)==0)
-    return finded;
+for(int i=0;i<50;i++){
+    if(strcicmp(first->command->name,name)==0)
+    return first;
     else
-    finded=finded->next;}
+    first=first->next;}
     break;
 case TEXT:
-for(int i=0;i<20;i++){
-    if(strcicmp(finded->text,name)==0)
-    return finded;
+for(int i=0;i<50;i++){
+    if(strcicmp(first->text,name)==0)
+    return first;
     else
-    finded=finded->next;}
+    first=first->next;}
     break;
 }
 

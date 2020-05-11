@@ -5,7 +5,31 @@
 #include <string.h>
 #include <ctype.h>
 
+struct command* create_command(char* name, char* description, char* pattern, size_t nmatch){
+    if (name==NULL ||description==NULL||strlen(name)==0||strlen(description)==0)
+    return NULL;
+    struct command* new=calloc(1,sizeof(struct command));
+    char *meno=calloc(strlen(name)+10,sizeof(char*));
+    char *opis=calloc(strlen(description)+10,sizeof(char*));
+
+
+    strcpy(meno,name);
+strcpy(opis,description);
+
+new->name=meno;
+new->description=opis;
+new->groups=&pattern;
+new->nmatch=nmatch;
+
+return new;
+}
 
 struct command* destroy_command(struct command* command){
-    return 0;
+    if(command==NULL)
+    return NULL;
+    free(command->name);
+    free(command->description);
+   
+    free(command);
+    return NULL;
 }
