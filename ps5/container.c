@@ -11,8 +11,10 @@ int strcicmp(char const *first, char const *second);
 struct container* remove_container(struct container *first, void *entry){
     if (first==NULL){
         return NULL;}
-    struct container *new=first;
-   
+        else{
+    
+    struct container *za=NULL;
+   struct container *pred=first;
     
     switch (first->type){
     
@@ -20,48 +22,88 @@ struct container* remove_container(struct container *first, void *entry){
         
         case ROOM:
             for(int i=0;i<100;i++){
-            if (new->room==entry)
+            if (pred->room==entry)
             {
-                first=first->next;
-                return first;
-                i++;
+            if (za != NULL)
+    {
+       za->next = pred->next;
+        free(pred);
+        return first;
+        
+    }
+    else
+    {
+       first = first->next;
+        free(pred);
+        return first; 
+    }
+
             }}
             break;
         case ITEM:
         for(int i=0;i<100;i++){
-            if (new->item==entry)
+            if (pred->item==entry)
             {
-                first=first->next;
-                return first;
-                i++;
+               if (za != NULL)
+    {
+       za->next = pred->next;
+        free(pred);
+        return first;
+        
+    }
+    else
+    {
+       first = first->next;
+        free(pred);
+        return first; 
+    }
             }}
             break;
         case COMMAND:
         for(int i=0;i<100;i++){
-            if (new->command==entry)
+            if (pred->command==entry)
             {
-                first=first->next;
-                return first;
-                i++;
+              if (za != NULL)
+    {
+       za->next = pred->next;
+        free(pred);
+        return first;
+        
+    }
+    else
+    {
+       first = first->next;
+        free(pred);
+        return first; 
+    }
             }}
             break;
         case TEXT:
             for(int i=0;i<100;i++){
-            if (new->text==entry)
+            if (pred->text==entry)
             {
-                first=first->next;
-                return first;
-                i++;
+              if (za != NULL)
+    {
+       za->next = pred->next;
+        free(pred);
+        return first;
+        
+    }
+    else
+    {
+       first = first->next;
+        free(pred);
+        return first; 
+    }
             }}
             break;
         }
-        new=new->next;
-    
-    if(first==NULL)
-    return NULL;
+        za=pred;
+        pred=pred->next;
+   
 
     return first;
-    
+        }
 }
 
 struct container* create_container(struct container* first, enum container_type type, void* entry){
@@ -102,7 +144,7 @@ struct container* create_container(struct container* first, enum container_type 
            return NULL;
            else{
         struct container * new=calloc(10,sizeof(struct container));
-        char *text;
+        
         new->type=type;
         switch (type)
         {
@@ -119,9 +161,8 @@ struct container* create_container(struct container* first, enum container_type 
             break;
         
         case TEXT:
-                   text=calloc(100,1);     
-        strcpy(text, entry);
-                        new->text = text;
+                   
+                        new->text = entry;
     
 
             break;
@@ -167,7 +208,7 @@ struct container* destroy_containers(struct container* first){
             case TEXT:
             if (first->type==TEXT && first->text!=NULL)
             {
-                free(first->text);
+                
                 free(first);
                 
             }
@@ -199,28 +240,28 @@ switch (finded->type){
 
 
 case ROOM:
-    for(int i=0;i<100;i++){
+    for(int i=0;i<20;i++){
     if(strcicmp(finded->room->name,name)==0)
     return finded;
     else
     finded=finded->next;}
     break;
 case ITEM:
-for(int i=0;i<100;i++){
+for(int i=0;i<20;i++){
     if(strcicmp(finded->item->name,name)==0)
     return finded;
     else
     finded=finded->next;}
     break;
 case COMMAND:
-for(int i=0;i<100;i++){
+for(int i=0;i<20;i++){
     if(strcicmp(finded->command->name,name)==0)
     return finded;
     else
     finded=finded->next;}
     break;
 case TEXT:
-for(int i=0;i<100;i++){
+for(int i=0;i<20;i++){
     if(strcicmp(finded->text,name)==0)
     return finded;
     else
