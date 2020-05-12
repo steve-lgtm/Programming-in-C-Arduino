@@ -94,5 +94,4 @@ void* get_from_container_by_name(struct container *first, const char *name);
  * @return Reference to the list of containers without given container.
  */
 struct container* remove_container(struct container *first, void *entry);
-
 #endif

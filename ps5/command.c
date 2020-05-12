@@ -20,9 +20,11 @@ strcpy(opis,description);
 new->name=meno;
 new->description=opis;
 //regex? try #include <regex.h> int regcomp(regex_t *preg, const char *pattern, int cflags);
+if (pattern==NULL){}
+else{
 regex_t comp;
 regcomp(&comp, pattern, 0);
-new->preg = comp;
+new->preg = comp;}
 new->nmatch=nmatch;
 
 return new;

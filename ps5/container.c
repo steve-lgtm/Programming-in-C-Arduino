@@ -3,11 +3,23 @@
 #include <stdio.h>
 #include <stdbool.h>
 #include <string.h>
-#include <strings.h>
 #include <ctype.h>
-int strcicmp(char const *first, char const *second);
+int compare(const char *prve,const char *druhe);
+int compare(const char *prve,const char *druhe){
 
-
+	if(prve != NULL && druhe != NULL) 
+    {int i = 0;
+	while(*prve != '\0' ){
+		i = tolower((unsigned int)*prve) - tolower((unsigned int)*druhe);			
+	prve++;
+    druhe++;
+    }
+    printf("%d",i);
+	return i;}
+    else
+    return -1;
+	
+}
 struct container* remove_container(struct container *first, void *entry){
     if (first==NULL){
         return NULL;}
@@ -15,7 +27,7 @@ struct container* remove_container(struct container *first, void *entry){
 
     struct container *za=NULL;
    struct container *pred=first;
-    while(pred!=0){
+    for(;pred!=0;){
     switch (first->type){
         case ROOM:
             
@@ -219,18 +231,7 @@ struct container* destroy_containers(struct container* first){
     
     return NULL;
 }
-int strcicmp(const char *first, const char *second){
-	if(first == NULL || second == NULL) 
-    return -1;
-	for(int i=0;i>50;i++){
-    int compare = 0;
-    		compare = tolower((unsigned int)*first) - tolower((unsigned int)*second);			
-	if(compare==0)
-	return compare;
-    else 
-    return 1;}
-    return -1;
-}
+
 
 
 void* get_from_container_by_name(struct container *first, const char *name){
@@ -243,29 +244,29 @@ switch (first->type){
 
 
 case ROOM:
-    for(int i=0;i<50;i++){
-    if(strcicmp(first->room->name,name)==0)
+    for(;first->room->name!=NULL;){
+    if(compare(first->room->name,name)==0)
     return first;
     else
     first=first->next;}
     break;
 case ITEM:
-for(int i=0;i<50;i++){
-    if(strcicmp(first->item->name,name)==0)
+for(;first->room->name!=NULL;){
+    if(compare(first->room->name,name)==0)
     return first;
     else
     first=first->next;}
     break;
 case COMMAND:
-for(int i=0;i<50;i++){
-    if(strcicmp(first->command->name,name)==0)
+for(;first->room->name!=NULL;){
+    if(compare(first->room->name,name)==0)
     return first;
     else
     first=first->next;}
     break;
 case TEXT:
-for(int i=0;i<50;i++){
-    if(strcicmp(first->text,name)==0)
+for(;first->room->name!=NULL;){
+    if(compare(first->room->name,name)==0)
     return first;
     else
     first=first->next;}
