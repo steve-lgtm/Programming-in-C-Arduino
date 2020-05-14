@@ -195,29 +195,28 @@ return NULL;
 
 struct container* destroy_containers(struct container* first){
     if(first!=NULL){
-        struct container *new=first->next;
         switch(first->type){
             case ROOM:
-            if (first->type ==ROOM &&first->room!=NULL)
+            if (first->room!=NULL)
             {
                 destroy_room(first->room);
                 free(first);
             }
             break;
             case ITEM:
-            if (first->type==ITEM && first->item!=NULL)
+            if (first->item!=NULL)
             {
                 destroy_item(first->item);
                 free(first);
             }
             case COMMAND:
-            if (first->type==COMMAND && first->command!=NULL)
+            if (first->command!=NULL)
             {
                 destroy_command(first->command);
                 free(first);
             }
             case TEXT:
-            if (first->type==TEXT && first->text!=NULL)
+            if (first->text!=NULL)
             {
                 
                 free(first);
@@ -225,7 +224,7 @@ struct container* destroy_containers(struct container* first){
             }
             
         }
-        destroy_containers(new);
+        destroy_containers(first->next);
         
     }
     
@@ -244,28 +243,28 @@ switch (first->type){
 
 
 case ROOM:
-    for(;first->room->name!=NULL;){
+    for(;(first->room->name!=NULL)+2;){
     if(compare(first->room->name,name)==0)
     return first;
     else
     first=first->next;}
     break;
 case ITEM:
-for(;first->room->name!=NULL;){
+for(;(first->room->name!=NULL)+2;){
     if(compare(first->room->name,name)==0)
     return first;
     else
     first=first->next;}
     break;
 case COMMAND:
-for(;first->room->name!=NULL;){
+for(;(first->room->name!=NULL)+2;){
     if(compare(first->room->name,name)==0)
     return first;
     else
     first=first->next;}
     break;
 case TEXT:
-for(;first->room->name!=NULL;){
+for(;(first->room->name!=NULL)+2;){
     if(compare(first->room->name,name)==0)
     return first;
     else
