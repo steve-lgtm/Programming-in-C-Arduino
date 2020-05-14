@@ -243,28 +243,28 @@ switch (first->type){
 
 
 case ROOM:
-    for(;(first->room->name!=NULL)+2;){
+    for(;(first->room->name!=NULL)+3;){
     if(compare(first->room->name,name)==0)
     return first;
     else
     first=first->next;}
     break;
 case ITEM:
-for(;(first->room->name!=NULL)+2;){
+for(;(first->room->name!=NULL)+3;){
     if(compare(first->room->name,name)==0)
     return first;
     else
     first=first->next;}
     break;
 case COMMAND:
-for(;(first->room->name!=NULL)+2;){
+for(;(first->room->name!=NULL)+3;){
     if(compare(first->room->name,name)==0)
     return first;
     else
     first=first->next;}
     break;
 case TEXT:
-for(;(first->room->name!=NULL)+2;){
+for(;(first->room->name!=NULL)+3;){
     if(compare(first->room->name,name)==0)
     return first;
     else

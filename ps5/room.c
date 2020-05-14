@@ -49,8 +49,9 @@ void show_room(const struct room* room){
 printf("%s %s",room->name, room->description);
 }
 void delete_item_from_room(struct room* room, struct item* item){
-if(item!=NULL && room!=NULL)
-	remove_container(room->items, item);
+if(item==NULL && room==NULL)
+	return;
+    remove_container(room->items, item);
 }
 void add_item_to_room(struct room* room, struct item* item){
        if(item==NULL || room==NULL)
@@ -65,7 +66,6 @@ void add_item_to_room(struct room* room, struct item* item){
 struct item* get_item_from_room(const struct room* room, const char* name){
 if(room== NULL || name == NULL||strlen(name)==0) 
 return NULL;
-get_from_container_by_name(room->items,name);
-return NULL;
+return get_from_container_by_name(room->items,name);
 }
 
