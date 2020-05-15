@@ -23,10 +23,8 @@ bool add_item_to_backpack(struct backpack* backpack, struct item* item){
     if(backpack->capacity>backpack->size){
     backpack->items=create_container(backpack->items, ITEM, item);
     backpack->size++;
-    printf("true");
     return 1;}
-    else{
-        printf("false");
+    else
+        
         return 0;
-    printf("false");
-}}
+}
