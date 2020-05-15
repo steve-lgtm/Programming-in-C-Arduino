@@ -21,9 +21,19 @@ bool add_item_to_backpack(struct backpack* backpack, struct item* item){
     if(backpack==NULL || item==NULL)
     return 0;
     if(backpack->capacity>backpack->size){
-    backpack->items=create_container(backpack->items, ITEM, item);
-    backpack->size++;
-    return 1;}
+        if (backpack->items!=NULL)
+        {
+                        create_container(backpack->items, ITEM, item);
+            backpack->size++;
+    return 1;   
+    }
+    else
+    {
+     backpack->items=create_container(backpack->items, ITEM, item);
+     return 1;
+    
+    }
+    }
     else
         
         return 0;
