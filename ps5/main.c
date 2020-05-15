@@ -31,6 +31,20 @@ struct item* create_item(char* name, char* description, unsigned int properties)
 struct item* destroy_item(struct item* item);
 struct container* add_room_to_world(struct container* world, struct room* room);
 struct room* get_room(struct container* world, char* name);
+char*naradie="fdgf";
+char* description="fdgfdg";
+struct item* itemko= create_item(naradie,description, EXAMINABLE);
+
+int i=5;
+struct backpack* batoh =create_backpack(i);
+add_item_to_backpack(batoh, itemko);
+add_item_to_backpack(batoh, itemko1);
+add_item_to_backpack(batoh, itemko2);
+add_item_to_backpack(batoh, itemko3);
+add_item_to_backpack(batoh, itemko4);
+
+destroy_backpack(batoh);
+
 
 }
 
