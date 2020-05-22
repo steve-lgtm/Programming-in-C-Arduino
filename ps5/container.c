@@ -14,7 +14,6 @@ int compare(const char *prve,const char *druhe){
 	prve++;
     druhe++;
     }
-    printf("%d",i);
 	return i;}
     else
     return -1;
