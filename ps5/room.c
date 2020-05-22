@@ -49,7 +49,7 @@ void show_room(const struct room* room){
 printf("%s %s",room->name, room->description);
 }
 void delete_item_from_room(struct room* room, struct item* item){
-if(item==NULL && room==NULL)
+if(item==NULL || room==NULL)
 	return;
     remove_container(room->items, item);
 }
