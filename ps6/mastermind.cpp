@@ -6,11 +6,7 @@
 #include <ctype.h>
 #include <time.h> 
 
-int main(){
-    
-generate_code(false,10);
 
-}
 
 char* generate_code(bool repeat, int length){
     if(length<1)
