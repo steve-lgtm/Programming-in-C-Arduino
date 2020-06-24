@@ -5,7 +5,7 @@
 
 
 void lcd_init(){
-    lcd.init();
+    lcd.begin();
     lcd.backlight();
 }
 
