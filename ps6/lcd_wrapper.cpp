@@ -1,21 +1,26 @@
+#include <LiquidCrystal_I2C.h>
 #include <Arduino.h>
 
 #include "lcd_wrapper.h"
 
 
 void lcd_init(){
+    lcd.init();
+    lcd.backlight();
 }
 
 void lcd_clear(){
+    lcd.clear();
 }
 
 
 void lcd_set_cursor(int y, int x){
+lcd.setCursor(x,y);
 }
 
 
 void lcd_print(char* text){
-    Serial.println(text);
+    lcd.print(text);
 }
 
 
