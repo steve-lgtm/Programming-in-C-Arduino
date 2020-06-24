@@ -450,9 +450,7 @@ void setup()
   
 }
 void loop(){
-  char code1[]="1234";
-    char* code;
-    code=code1;
+    char* code = generate_code(false, 4);
     play_game(code);
-    
+    free(code);
 }
